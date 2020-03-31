@@ -3,9 +3,9 @@ import subprocess
 import os
 import sys
 import time
+import argparse
 
 wfile = os.environ["HOME"]+"/.windowlist"
-arg = sys.argv[1]
 
 def get(command):
     return subprocess.check_output(["/bin/bash", "-c", command]).decode("utf-8")
@@ -81,8 +81,17 @@ def run_remembered():
     except FileNotFoundError:
         pass
 
-if arg == "-run":
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--run')
+parser.add_argument('--read')
+args = parser.parse_args()
+
+if args.run:
     run_remembered()
-elif arg == "-read":
+elif args.read:
     read_windows()
+else:
+    parser.print_help()
+
 
