@@ -83,8 +83,8 @@ def run_remembered():
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--run')
-parser.add_argument('--read')
+parser.add_argument('--run',  action='store_true')
+parser.add_argument('--read', action='store_true')
 args = parser.parse_args()
 
 if args.run:
